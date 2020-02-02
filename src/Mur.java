@@ -1,12 +1,23 @@
 
 public class Mur {
 	char[][] mur;
-	byte largeur;
+	final byte largeur = 5;
 	byte hauteur;
 	
-	public Mur(byte pLargeur, byte pHauteur) {
-		this.largeur=pLargeur;
-		this.hauteur=pHauteur;
-		this.mur=new char[pHauteur][pLargeur];
+	/**
+	 * Affiche le mur complet
+	 * @param m Le mur
+	 */
+	public static void afficherMur(Mur m) {
+		for(byte i=m.hauteur; i>=0;--j) {
+			for(byte j=0;j<m.largeur;++j){
+			//	System.out.println((m.largeur-j)+m[i][j]);
+			}
+		}
+		System.out.print(" ");
+		for(int k=1;k<m.largeur;k++) {
+			System.out.print(k);
+		}
+		System.out.println("");
 	}
 }
