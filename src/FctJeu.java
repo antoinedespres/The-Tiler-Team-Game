@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Classe regroupant les fonctions liées à l'exécution générale du programme
+ */
 public class FctJeu {
 	public static void debutPartie(Mur m) {
       //  Carreau a=new Carreau(1,2,BLEU);
