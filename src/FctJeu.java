@@ -51,13 +51,9 @@ public class FctJeu {
 	 * Affiche la phrase détaillant le score atteint
 	 * @param m le mur
 	 */
-	public static void afficherScore(Mur m) {
-		byte pts;
-		byte nivComplets;
-		byte nonPose;
-		byte carteEcartee;
+	public static String toString(Score s) {
 		
-		//System.out.println(pts + "points ("+nivComplets+" niveaux complets, "+nonPose + "carreaux non posés, " + carteEcartee + " cartes écartées)");
+		return pts + "points ("+nivComplets+" niveaux complets, "+nonPose + "carreaux non posés, " + carteEcartee + " cartes écartées)"
 	}
 
 }
