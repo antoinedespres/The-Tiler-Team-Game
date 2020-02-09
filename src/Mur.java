@@ -1,4 +1,3 @@
-
 public class Mur {
 	/**
 	 * Tableau de caractères à deux dimensions.
