@@ -1,27 +1,37 @@
 import java.util.Scanner;
 
 /**
- * Classe regroupant les fonctions liées à l'exécution générale du programme
+ * Classe regroupant les fonctions liées Ã  l'exÃ©cution générale du programme
  */
 public class FctJeu {
 	public static void debutPartie(Mur m) {
       //  Carreau a=new Carreau(1,2,BLEU);
 }
 	/**
-	 * Vérifie si la partie est terminée ou non
+	 * VÃ©rifie si la partie est terminÃ©e ou non
 	 * @param m Le mur
-	 * @return true si la partie est terminée, false sinon
+	 * @return true si la partie est terminÃ©e, false sinon
 	 */
 	public static boolean estTerminee(Mur m) {
-       /* if(nbCartes == 0 || nbCarr==0) {
-        	afficherScore(m);
-        	return true;
-        }*/
-        return false;
+       //return nbCartes == 0 || nbCarr==0 || nbCartes==0;
 	}
 	
 	/**
-	 * Lit la commande saisie par un joueur et l'envoie à un switch
+	 * Demande l'ajout au tableau 2D d'un carreau si il correspond aux indications de la carte
+	 * @param c la carte
+	 */
+	/*public void gestionCarte(Carte c) {
+		if(typeCarte=COULEUR) {
+			for(int i=0; i<tasCartes.length;++i) {
+				if(i.couleur=Couleur) {
+					affichage.add(i);
+				}
+			}
+		}
+	}*/
+	
+	/**
+	 * Lit la commande saisie par un joueur et l'envoie Ã  un switch
 	 */
 	public static void saisie() {
 		Scanner sc = new Scanner(System.in);
@@ -31,7 +41,7 @@ public class FctJeu {
 	}
 	
 	/**
-	 * Switch appelant la fonction correspondant à la commande
+	 * Switch appelant la fonction correspondant Ã  la commande
 	 * @param mot Le mot saisi
 	 */
 	public static void appelCommande(String mot) {
@@ -47,13 +57,6 @@ public class FctJeu {
 		}
 	}
 	
-	/**
-	 * Affiche la phrase détaillant le score atteint
-	 * @param m le mur
-	 */
-	public static String toString(Score s) {
-		
-		return pts + "points ("+nivComplets+" niveaux complets, "+nonPose + "carreaux non posés, " + carteEcartee + " cartes écartées)"
-	}
+
 
 }

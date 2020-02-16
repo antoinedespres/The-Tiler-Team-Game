@@ -1,37 +1,64 @@
 
-public class Carte {
-	private static final byte NBCARTESTOT=33;
-	private static final byte NBCARTESCOULEUR=9;
-	private static final byte NBCARTESTAILLE=5;
-	private enum typeCarte{
-    BLEU,
-    ROUGE,
-    TAILLE1,
-    TAILLE2,
-    TAILLE3;
-  }
+public class Carreau {
+	private int largeur;
+	private int hauteur;
+	private char lettre;
+	
+	public enum couleur{BLEU, ROUGE};
+	
+	/**
+	 * Constructeur de carreau.
+	 * @param pLargeur Largeur du carreau
+	 * @param pHauteur Hauteur du carreau
+	 * @param pCouleur Couleur du carreau
+	 */
+	public Carreau(int pLargeur, int pHauteur, char pLettre) {
+	    largeur = pLargeur;
+	    hauteur = pHauteur;
+        lettre = pLettre;
+	  }
 
-  private typeCarte[NBCARTESTOT] tasCartes;
-
-  public void initTasCarte(){
-    int i = 0;
-    for(; i<NBCARTESCOULEUR; ++i){
-      this.tasCartes[i] = typeCarte.BLEU;
-    }
-    for(;i<18;++i){
-      this.tasCartes[i] = typeCarte.ROUGE;
-    }
-    for(;i<23;++i){
-      this.tasCarte[i] = typeCarte.TAILLE1;
-    }
-    for(;i<28;++i){
-      this.tasCarte[i] = typeCarte.TAILLE2;
-    }
-    for(;i<NBCARTES;++i){
-      this.tasCarte[i] = typeCarte.TAILLE3;
-    }
-    tasCarte.shuffle();
-  }
+   //fonction afficher qui prend en param le type de carte et utilise un tableau 2D pour les afficher horizontalement
+   //pour toutes case du tab empty, inserer un espace.
+   //crÃ©er une fct dans Carte pour recup type carte.
   
+  public void afficherCartesRest(){
+
+  }
+
+  public int getLargeur(){
+    return largeur;
+  }
+
+  public int getHauteur(){
+    return hauteur;
+  }
+
+  public void placerCarreau(Carreau c, int absBG, int ordBG, Mur m){
+    if(placementCorrect(c,m)){
+
+    }
+    else saisie();
+  }
+
+  private boolean placementCorrect(Carreau c, Mur m){
+    return (!dépasse(c,m) && touche(c,m) && baseRepose(c,m) && !cloneBord(c,m));
+  }
+
+  private boolean dépasse(Carreau c, int absBG, int ordBG, Mur m){
+    return absBG+c.largeur< m.getLargeur();
+  }
+
+  private boolean touche(Carreau c, Mur m){
+    return;
+  }
+
+  private boolean baseRepose(Carreau c, Mur m){
+
+  }
+
+  private boolean cloneBord(Carreau c, int absBG, int ordBG, Mur m){
+    return m.mur[absBG-1][ordBG].equals();
+  }
+
 }
-//créer une fct getTypeCarte pour la fonction afficher carte dispo dans Carreau.java

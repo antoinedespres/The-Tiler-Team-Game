@@ -5,7 +5,12 @@ public class Score {
 	private int nonPose;
 	private int carteEcartee;
 
-  public String toString(pts, nivComplets,nonPose,carteEcartee){
-    return;
-  }
+  	/**
+	 * Affiche la phrase détaillant le score atteint
+	 * @param m le mur
+	 */
+	public static String toString(Score s) {
+		
+		return s.pts + "points ("+s.nivComplets+" niveaux complets, "+s.nonPose + "carreaux non posés, " + s.carteEcartee + " cartes écartées)";
+	}
 }
