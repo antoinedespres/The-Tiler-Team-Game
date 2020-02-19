@@ -3,10 +3,10 @@ public class Mur {
   /**
    * La largeur du mur est constante et définie à 5 unités.
    */
-  public static final int LARGEUR = 5;
+  private final static int LARGEUR = 5;
 
   /**
-   * Tableau de caractÃ¨res Ã  deux dimensions.
+   * Tableau de caractères à deux dimensions.
    */
   char[][] mur;
 
@@ -15,19 +15,19 @@ public class Mur {
    */
   int hauteur = 5;
 
-  public int getLargeur() {//a complÃ©ter
+  public int getLargeur() {//a compléter
     return LARGEUR;
   }
 
   /**
-   * Affiche le mur complet avec coordonnÃ©es.
+   * Affiche le mur complet avec coordonnées.
    * 
    * @param m Le mur
    */
   public static void afficherMur(Mur m) {
     for (int i = m.mur.length; i >= 0; --i) {
       System.out.print(Integer.toString(i));
-      for (int j = 0; j < m.getLargeur(); ++j) {
+      for (byte j = 0; j < m.getLargeur(); ++j) {
         // System.out.println((m.largeur-j)+m[i][j]);
       }
     }
@@ -36,5 +36,9 @@ public class Mur {
       System.out.print(k);
     }
     System.out.println("");
+  }
+
+  public void placerCarreau(Carreau c, int absBG, int ordBG) {
+
   }
 }
