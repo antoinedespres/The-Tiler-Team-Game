@@ -2,6 +2,12 @@ import java.lang.*;
 
 import javax.lang.model.util.ElementScanner6;
 
+/**
+ * Classe Carreau
+ * Un carreau est caractérisé par une largeur, une hauteur et une lettre
+ * @author Antoine Després, Thibault Henrion
+ * @version 1.0
+ */
 public class Carreau {
   private int largeur;
   private int hauteur;
@@ -9,13 +15,14 @@ public class Carreau {
  
 
   /**
-   * Constructeur de carreau.
+   * Constructeur de carreau
    * @param pLargeur Largeur du carreau
    * @param pHauteur Hauteur du carreau
    * @param pLettre Lettre du carreau
+   * @param pRouge Booléen carreau rouge ou non
    */
-  public Carreau(int pLargeur, int pHauteur, char pLettre, boolean rouge) {
-    if(rouge){
+  public Carreau(int pLargeur, int pHauteur, char pLettre, boolean pRouge) {
+    if(pRouge){
       pLettre = Character.toUpperCase(pLettre);
     }
     largeur = pLargeur;
@@ -74,7 +81,7 @@ public class Carreau {
     m.placerCarreau(c, absBG, ordBG);
     
     }
-    else saisie();
+    else Main.saisie();
   }
 
   /**
@@ -87,9 +94,9 @@ public class Carreau {
     // On ne fait pas un ET entre toutes les méthodes car si la première est à false, toutes les suivantes ne seront pas exécutées.
     boolean dépasse=dépasse(c, absBG, ordBG ,m);
     boolean touche=touche(c,m);
-    boolean baseRepose = baseRepose(c,m);
+    boolean baseRepose = baseRepose(c,absBG, ordBG, m);
     boolean cloneBord = cloneBord(c, absBG, ordBG, m);
-    return (!depasse && touche && baseRepose && cloneBord);
+    return (!dépasse && touche && baseRepose && cloneBord);
   }
 
   /**
@@ -100,7 +107,7 @@ public class Carreau {
   * @param m Le {@link Mur}
   */
   private boolean dépasse(Carreau c, int absBG, int ordBG, Mur m) {
-    if(absBG + c.l < m.getLargeur()){
+    if(absBG + c.largeur < m.getLargeur()){
       return true;
     }
     System.err.println("Le carreau dépasse de la zone à carreler");

@@ -1,6 +1,5 @@
+import java.util.ArrayList;
 import java.util.Scanner;
-
-import JeuDeCartes.typeCarte;
 
 public class Main {
 
@@ -9,19 +8,18 @@ public class Main {
         Mur m = new Mur();
         JeuDeCartes j = new JeuDeCartes();
         Score s = new Score(0, 0, 33, 0);
+        int noJoueur = 1;
         do {
-          System.out.println("");
-
+        	System.out.println("Joueur "+noJoueur+", la carte tirée est : "+ tc);
+        	afficherCartesDispo(Carte c);
+        	saisie();
+        	noJoueur++;
+        	if(noJoueur>2) noJoueur=1;
         } while (!estTerminee(m));
         
         System.out.println(s.toString(s));
     }
-  /**
- * Classe regroupant les fonctions liées à l'exécution générale du programme
- */
-  public void debutPartie(Mur m) {
-    // Carreau a=new Carreau(1,2,BLEU);
-  }
+ 
   private final char lettres[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
   private final int dim[][] = {{1,1,2,2,1,3,2,3,3},{1,2,1,2,3,1,3,2,3}};
 
@@ -31,20 +29,20 @@ public class Main {
    * @param m Le mur
    * @return true si la partie est terminée, false sinon
    */
-  public static boolean estTerminee(Mur m) {
-    return j.tasCartes.length;
+  public static boolean estTerminee(Mur m, Score s) {
+    return j.tasCartes.length==00||s.getNonPose.equals(0);
   }
 
   /**
   * Crée une {@link java.util.ArrayList} contenant tous les carreaux
   */
   public void déclarerCarreaux(){
-    Arraylist<Carreau> listeCar= new ArrayList<>();
+    ArrayList<Carreau> listeCar= new ArrayList<>();
     for (int i:lettres){
-      listeCar.add(Carreau = new Carreau(lettres[i], dim[0][i], dim[1][i], false));
+      listeCar.add(new Carreau(dim[0][i], dim[1][i],lettres[i], false));
     }
     for (int i:lettres){
-      listeCar.add(Carreau = new Carreau(lettres[i], dim[0][i], dim[1][i], true));
+      listeCar.add(new Carreau(dim[0][i], dim[1][i],lettres[i], false));
     }
   }
   /**

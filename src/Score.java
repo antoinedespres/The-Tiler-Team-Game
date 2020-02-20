@@ -12,15 +12,19 @@ public class Score {
 	  carteEcartee=pCarteEcartee;
   }
   /**
-   * Affiche la phrase détaillant le score atteint
-   * 
+   * Stocke la phrase détaillant le score atteint
    * @param s le score
+   * @return s Chaîne de caractères détaillant le score
    */
   public String toString(Score s) {
 
     return (pts + "points (" + nivComplets + " niveaux complets, " + nonPose + "carreaux non posés, " + carteEcartee + " cartes écartées)");
   }
 
+  /**
+   * Incrémenter la valeur saisie
+   * @param s Le nom de la valeur à incrémenter
+   */
   public void incrementer(String s){
     switch(s){
       case "nivComplets":
@@ -33,7 +37,18 @@ public class Score {
         carteEcartee++;
         break;
     }
-    
 
+  }
+  
+  public int getNivComplets(Score s) {
+	  return nivComplets;
+  }
+  
+  public int getNonPose(Score s) {
+	  return nonPose;
+  }
+  
+  public int getcarteEcartee(Score s) {
+	  return carteEcartee;
   }
 }
