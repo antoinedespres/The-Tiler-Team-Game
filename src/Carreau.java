@@ -136,7 +136,7 @@ public class Carreau {
   * @param m Le {@link Mur}
   */
   private boolean baseRepose(Carreau c, int absBG, int ordBG, Mur m) {
-    if(1){
+    if(true){
       return true;
     }
     System.err.println("Toute la base du carreau ne repose pas sur le bas de la zone à carreler ou sue d'autres carreaux");

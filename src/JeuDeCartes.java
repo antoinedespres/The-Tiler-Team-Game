@@ -3,10 +3,10 @@ import java.util.Collections;
 
 public class JeuDeCartes {
   private static final int NBCARTES = 33;
-  private static final int NBCARTESCOULEUR = 9;
+  private static final int NBCARTESPARCOULEUR = 9;
   private static final int NBCOULEURS=2;
-  private static final int NBCARTESCOULEURTOT = 18;
-  private static final int NBCARTESTAILLE = 5;
+  private static final int NBCARTESPARTAILLE = 5;
+  private static final int NBTAILLES=3;
 
   private ArrayList<Carte> tasCartes;
 
@@ -23,20 +23,20 @@ public class JeuDeCartes {
   */
   private void remplirPaquet() {
     int i = 0;
-    for (; i < NBCARTESCOULEUR; ++i) {
-      this.tasCartes.add(new Carte(Carte.typeCarte.BLEU));
+    for (; i < NBCARTESPARCOULEUR; ++i) {
+      this.getTasCartes().add(new Carte(Carte.typeCarte.BLEU));
     }
-    for (; i < NBCARTESCOULEUR*NBCOULEURS; ++i) {
-      this.tasCartes.add(new Carte(Carte.typeCarte.ROUGE));
+    for (; i < NBCARTESPARCOULEUR*NBCOULEURS; ++i) {
+      this.getTasCartes().add(new Carte(Carte.typeCarte.ROUGE));
     }
-    for (; i < (i + NBCARTESTAILLE); ++i) {
-      this.tasCartes.add(new Carte(Carte.typeCarte.TAILLE1));
+    for (; i < (i + NBCARTESPARTAILLE); ++i) {
+      this.getTasCartes().add(new Carte(Carte.typeCarte.TAILLE1));
     }
-    for (; i < (NBCARTESCOULEURTOT + NBCARTESTAILLE + NBCARTESTAILLE); ++i) {
-      this.tasCartes.add(new Carte(Carte.typeCarte.TAILLE2));
+    for (; i < (i+NBCARTESPARTAILLE); ++i) {
+      this.getTasCartes().add(new Carte(Carte.typeCarte.TAILLE2));
     }
     for (; i < NBCARTES; ++i) {
-      this.tasCartes.add(new Carte(Carte.typeCarte.TAILLE3));
+      this.getTasCartes().add(new Carte(Carte.typeCarte.TAILLE3));
     }
   }
   
@@ -45,8 +45,8 @@ public class JeuDeCartes {
   *@return carteTirée : la carte tirée
   */
   public Carte tirerCarte() {
-    Carte carteTirée = tasCartes.get(tasCartes.size() - 1);
-    tasCartes.remove(tasCartes.size() - 1);
+    Carte carteTirée = getTasCartes().get(getTasCartes().size() - 1);
+    getTasCartes().remove(getTasCartes().size() - 1);
     return carteTirée;
   }
 
@@ -56,14 +56,14 @@ public class JeuDeCartes {
   *@return true si paquet vide
   */
   public boolean estVide(){
-    return this.tasCartes.isEmpty();
+    return this.getTasCartes().isEmpty();
   }
   
   /**
   * Vide le paquet de carte
   */
   public void viderPaquet() {
-    this.tasCartes.clear();
+    this.getTasCartes().clear();
   }
 
   /**
@@ -71,7 +71,7 @@ public class JeuDeCartes {
   */
   public void mélangerPaquet() {
     assert(!this.estVide());
-    Collections.shuffle(this.tasCartes);
+    Collections.shuffle(this.getTasCartes());
   }
 
   /**
@@ -79,16 +79,19 @@ public class JeuDeCartes {
   * @param newCarte La Carte à insérer dans le jeu de cartes
   */
   public void insererCarte(Carte newCarte) {
-    tasCartes.add(tasCartes.size() - 1, newCarte);
+    getTasCartes().add(getTasCartes().size() - 1, newCarte);
   }
 
   /**
   * Incrémente le compteur de cartes écartées
   * 
   */
-  public void écarterCarte(){
-    Main.s.incrementer(carteEcartee);
+  public void écarter(Score s){
+    s.incrementer("carteÉcartée");
+  }
+
+  public ArrayList<Carte> getTasCartes() {
+	return tasCartes;
   }
 }
-// créer une fct getTypeCarte pour la fonction afficher carte dispo dans
-// Carreau.java
+// 

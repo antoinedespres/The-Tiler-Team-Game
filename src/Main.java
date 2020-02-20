@@ -10,12 +10,14 @@ public class Main {
         Score s = new Score(0, 0, 33, 0);
         int noJoueur = 1;
         do {
-        	System.out.println("Joueur "+noJoueur+", la carte tirée est : "+ tc);
-        	afficherCartesDispo(Carte c);
+        	Carte carteTirée=j.tirerCarte();
+        	System.out.println("Joueur "+noJoueur+", la carte tirée est : "+ carteTirée); //.tc
+        	//afficherCartesDispo(Carte c);
         	saisie();
+        	m.afficherMur();
         	noJoueur++;
         	if(noJoueur>2) noJoueur=1;
-        } while (!estTerminee(m));
+        } while (!estTerminee(j));
         
         System.out.println(s.toString(s));
     }
@@ -29,8 +31,8 @@ public class Main {
    * @param m Le mur
    * @return true si la partie est terminée, false sinon
    */
-  public static boolean estTerminee(Mur m, Score s) {
-    return j.tasCartes.length==00||s.getNonPose.equals(0);
+  public static boolean estTerminee(JeuDeCartes j, boolean stop) {
+    return j.getTasCartes().size()==0 || stop=true;
   }
 
   /**
@@ -48,7 +50,7 @@ public class Main {
   /**
    * Lit la commande saisie par un joueur et l'envoie à un switch
    */
-  public void saisie() {
+  public static void saisie() {
     Scanner sc = new Scanner(System.in);
     sc.nextLine();
     String mot = sc.nextLine();
@@ -61,13 +63,13 @@ public class Main {
    * 
    * @param mot Le mot saisi
    */
-  public void appelCommande(String mot) {
+  public void appelCommande(String mot, Carte carteTirée, boolean stop) {
     switch (mot) {
     case "next":
-      // ecarter(carteEnJeu);
+      écarter(carteTirée);
       break;
     case "stop":
-      // afficherScore(m);
+      stop=true;
       break;
     default:
       saisie();

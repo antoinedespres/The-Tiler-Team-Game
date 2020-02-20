@@ -24,10 +24,10 @@ public class Mur {
    * 
    * @param m Le mur
    */
-  public static void afficherMur(Mur m) {
-    for (int i = m.mur.length; i >= 0; --i) {
+  public void afficherMur() {
+    for (int i = mur.length; i >= 0; --i) {
       System.out.print(Integer.toString(i));
-      for (byte j = 0; j < m.getLargeur(); ++j) {
+      for (int j = 0; j < this.getLargeur(); ++j) {
         // System.out.println((m.largeur-j)+m[i][j]);
       }
     }
@@ -38,7 +38,7 @@ public class Mur {
     System.out.println("");
   }
 
-  public void placerCarreau(Carreau c, int absBG, int ordBG) {
-
+  public void placerCarreau(Mur m,Carreau c, int absBG, int ordBG) {
+	  
   }
 }

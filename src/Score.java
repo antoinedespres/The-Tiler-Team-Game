@@ -3,13 +3,13 @@ public class Score {
   private int pts;
   private int nivComplets;
   private int nonPose;
-  private int carteEcartee;
+  private int carteÉcartée;
 
-  public Score(int pPts, int pNivComplets, int pNonPose, int pCarteEcartee) {
+  public Score(int pPts, int pNivComplets, int pNonPose, int pcarteÉcartée) {
 	  pts=pPts;
 	  nivComplets=pNivComplets;
 	  nonPose=pNonPose;
-	  carteEcartee=pCarteEcartee;
+	  carteÉcartée=pCarteÉcartée;
   }
   /**
    * Stocke la phrase détaillant le score atteint
@@ -18,7 +18,7 @@ public class Score {
    */
   public String toString(Score s) {
 
-    return (pts + "points (" + nivComplets + " niveaux complets, " + nonPose + "carreaux non posés, " + carteEcartee + " cartes écartées)");
+    return (pts + "points (" + nivComplets + " niveaux complets, " + nonPose + "carreaux non posés, " + carteÉcartée + " cartes écartées)");
   }
 
   /**
@@ -33,8 +33,8 @@ public class Score {
       case "nonPose":
         nonPose++;
         break;
-      case "carteEcartee":
-        carteEcartee++;
+      case "carteÉcartée":
+        carteÉcartée++;
         break;
     }
 
@@ -48,7 +48,7 @@ public class Score {
 	  return nonPose;
   }
   
-  public int getcarteEcartee(Score s) {
-	  return carteEcartee;
+  public int getcarteÉcartée(Score s) {
+	  return carteÉcartée;
   }
 }
