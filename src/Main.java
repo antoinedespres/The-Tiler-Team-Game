@@ -3,76 +3,86 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ===");
-        Mur m = new Mur();
-        JeuDeCartes j = new JeuDeCartes();
-        Score s = new Score(0, 0, 33, 0);
-        int noJoueur = 1;
-        do {
-        	Carte carteTir�e=j.tirerCarte();
-        	System.out.println("Joueur "+noJoueur+", la carte tir�e est : "+ carteTir�e); //.tc
-        	//afficherCartesDispo(Carte c);
-        	saisie();
-        	m.afficherMur();
-        	noJoueur++;
-        	if(noJoueur>2) noJoueur=1;
-        } while (!estTerminee(j));
-        
-        System.out.println(s.toString(s));
-    }
- 
-  private final char lettres[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
-  private final int dim[][] = {{1,1,2,2,1,3,2,3,3},{1,2,1,2,3,1,3,2,3}};
+  public static boolean stop = false;
 
-  /**
-   * V�rifie si la partie est termin�e ou non
-   * 
-   * @param m Le mur
-   * @return true si la partie est termin�e, false sinon
-   */
-  public static boolean estTerminee(JeuDeCartes j, boolean stop) {
-    return j.getTasCartes().size()==0 || stop=true;
-  }
-
-  /**
-  * Cr�e une {@link java.util.ArrayList} contenant tous les carreaux
-  */
-  public void d�clarerCarreaux(){
-    ArrayList<Carreau> listeCar= new ArrayList<>();
-    for (int i:lettres){
-      listeCar.add(new Carreau(dim[0][i], dim[1][i],lettres[i], false));
-    }
-    for (int i:lettres){
-      listeCar.add(new Carreau(dim[0][i], dim[1][i],lettres[i], false));
-    }
-  }
-  /**
-   * Lit la commande saisie par un joueur et l'envoie � un switch
-   */
-  public static void saisie() {
+  public static void main(String[] args) {
+    System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ===");
+    Mur m = new Mur();
+    PaquetCarreau p = new PaquetCarreau(true);
+    JeuDeCartes j = new JeuDeCartes();
+    Score s = new Score(0, 0, JeuDeCartes.NBCARTES, 0);
     Scanner sc = new Scanner(System.in);
-    sc.nextLine();
-    String mot = sc.nextLine();
-    appelCommande(mot);
-    sc.close();
+    int noJoueur = 1;
+
+    do {
+      System.out.println('\n' + m.toString());
+      Carte carteTirée = j.tirerCarte();
+      System.out.println(System.lineSeparator() + "Joueur " + noJoueur + ", la carte tirée est : " + carteTirée.getTypeCarte());
+      PaquetCarreau pTrié = p.carreauDispo(carteTirée);
+      if(!pTrié.estVide()){
+        System.out.println(pTrié.toString());
+      }
+
+      appelCommande(sc, m, carteTirée, p, s, pTrié.estVide());
+      noJoueur++;
+      if (noJoueur > 2)
+        noJoueur = 1;
+    } while (!estTerminee(j, p, stop));
+
+  System.out.println(s.toString(s, p, m));
   }
 
   /**
-   * Switch appelant la fonction correspondant � la commande
-   * 
-   * @param mot Le mot saisi
+   * Vérifie si la partie est terminée ou non
+   *
+   * @param j    Le jeu de carte
+   * @param p    Le Paquet de carreaux
+   * @param stop La condition stop entrée ar le joueur
+   * @return true si la partie est terminée, false sinon
    */
-  public void appelCommande(String mot, Carte carteTir�e, boolean stop) {
+  public static boolean estTerminee(JeuDeCartes j, PaquetCarreau p, boolean stop) {
+    return j.getTasCartes().size() == 0 || p.getPaquetCarreau().size() == 0 || stop == true;
+  }
+
+  /**
+   * Lit la commande saisie par un joueur et l'envoie à un switch
+   * 
+   * @param carteTirée La carte tirée
+   * @param s          Le score de la partie
+   */
+  public static void appelCommande(Scanner sc, Mur m, Carte CarteTirée, PaquetCarreau p, Score s, boolean AucunCarreau) {
+    String mot = "";
+    if(AucunCarreau)
+      mot = "next";
+    else
+      mot = sc.next();
     switch (mot) {
-    case "next":
-      �carter(carteTir�e);
-      break;
-    case "stop":
-      stop=true;
-      break;
-    default:
-      saisie();
+      case "next":
+        s.écarter();
+        break;
+      case "stop":
+        stop=true;
+        break;
+      default:
+        if (mot.length() > 1) {
+          System.err.println("Saisie incorrecte. Ne correspond ni à une instruction ni à une lettre.");
+          appelCommande(sc, m, CarteTirée, p, s, false);
+        } else {
+          boolean estPosée;
+          int absBG = sc.nextInt();
+          int ordBG = sc.nextInt();
+          Carreau c = p.getCarreau(mot.charAt(0));
+          estPosée = m.placerCarreau(c, absBG, ordBG);
+          if(!estPosée){
+            appelCommande(sc, m, CarteTirée, p, s, false);
+          }
+          p.retirerCarreau(mot.charAt(0));
+        }
+        // placement d'un carreau
+        // on doit s'assurer que la première saisie correspond aux possibilités
+        // on envoie cette lettre à une autre méthode qui recueillera par deux Scanner
+        // les coordonnées absBG et ordBG
+        // cette autre méthode appellera enfin le placement du carreau sur le mur
     }
   }
 }

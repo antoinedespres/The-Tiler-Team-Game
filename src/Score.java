@@ -3,52 +3,61 @@ public class Score {
   private int pts;
   private int nivComplets;
   private int nonPose;
-  private int carte…cartÈe;
+  private int carte√âcart√©e;
 
-  public Score(int pPts, int pNivComplets, int pNonPose, int pcarte…cartÈe) {
-	  pts=pPts;
-	  nivComplets=pNivComplets;
-	  nonPose=pNonPose;
-	  carte…cartÈe=pCarte…cartÈe;
+  public Score(int pPts, int pNivComplets, int pNonPose, int pCarte√âcart√©e) {
+    pts = pPts;
+    nivComplets = pNivComplets;
+    nonPose = pNonPose;
+    carte√âcart√©e = pCarte√âcart√©e;
   }
+
   /**
-   * Stocke la phrase dÈtaillant le score atteint
+   * Stocke la phrase d√©taillant le score atteint
+   * 
    * @param s le score
-   * @return s ChaÓne de caractËres dÈtaillant le score
+   * @return s Cha√Æne de caract√®res d√©taillant le score
    */
-  public String toString(Score s) {
-
-    return (pts + "points (" + nivComplets + " niveaux complets, " + nonPose + "carreaux non posÈs, " + carte…cartÈe + " cartes ÈcartÈes)");
+  public String toString(Score s, PaquetCarreau p, Mur m) {
+    return (5*m.getHauteurMin()-p.size()-carte√âcart√©e + " points (" + m.getHauteurMin() + " niveaux complets, " + p.size() + " carreaux non pos√©s, " + carte√âcart√©e
+        + " cartes √©cart√©es)");
   }
 
   /**
-   * IncrÈmenter la valeur saisie
-   * @param s Le nom de la valeur ‡ incrÈmenter
+   * Incr√©menter la valeur saisie
+   * 
+   * @param s Le nom de la valeur √† incr√©menter
    */
-  public void incrementer(String s){
-    switch(s){
-      case "nivComplets":
-        nivComplets++;
-        break;
-      case "nonPose":
-        nonPose++;
-        break;
-      case "carte…cartÈe":
-        carte…cartÈe++;
-        break;
+  public void incrementer(String s) {
+    switch (s) {
+    case "nivComplets":
+      nivComplets++;
+      break;
+    case "nonPose":
+      nonPose++;
+      break;
+    case "carte√âcart√©e":
+      carte√âcart√©e++;
+      break;
     }
 
   }
-  
+  /**
+  * Incr√©mente la valeur de carte √©cart√©e. A utiliser lorsque le joueur √©carte une carte 
+  */
+  public void √©carter(){
+    carte√âcart√©e++;
+  }
+
   public int getNivComplets(Score s) {
-	  return nivComplets;
+    return nivComplets;
   }
-  
+
   public int getNonPose(Score s) {
-	  return nonPose;
+    return nonPose;
   }
-  
-  public int getcarte…cartÈe(Score s) {
-	  return carte…cartÈe;
+
+  public int getcarte√âcart√©e(Score s) {
+    return carte√âcart√©e;
   }
 }
