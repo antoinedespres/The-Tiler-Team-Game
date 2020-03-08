@@ -1,37 +1,33 @@
-
+/**
+ * Classe Carte.
+ * 
+ * @author Antoine Després
+ * @author Thibault Henrion
+ * @version 1.0
+ */
 public class Carte {
 
-  public static enum typeCarte {
-    BLEU, ROUGE, TAILLE1, TAILLE2, TAILLE3;
-  }
+	/**
+	 * Une carte est caractérisée seulement par le type de carreau qu'elle oblige à
+	 * jouer (taille ou couleur)
+	 */
+	private TypeCarte tc;
 
-  private typeCarte tc;
+	/**
+	 * Constructeur de carte
+	 * 
+	 * @param tc le type de carte
+	 */
+	public Carte(TypeCarte tc) {
+		this.tc = tc;
+	}
 
-  public Carte(typeCarte tc) {
-    this.tc = tc;
-  }
-
-  public typeCarte getTypeCarte() {
-    return this.tc;
-  }
-
-  public void setBleu() {
-    this.tc = typeCarte.BLEU;
-  }
-
-  public void setRouge() {
-    this.tc = typeCarte.ROUGE;
-  }
-
-  public void setTaille1() {
-    this.tc = typeCarte.TAILLE1;
-  }
-
-  public void setTaille2() {
-    this.tc = typeCarte.TAILLE2;
-  }
-
-  public void setTaille3() {
-    this.tc = typeCarte.TAILLE3;
-  }
+	/**
+	 * Accesseur de type de carte
+	 * 
+	 * @return tc le type de carte
+	 */
+	public TypeCarte getTypeCarte() {
+		return this.tc;
+	}
 }

@@ -1,88 +1,83 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Classe Main.
+ * 
+ * @author Antoine Després
+ * @author Thibault Henrion
+ * @version 1.0
+ */
 public class Main {
 
-  public static boolean stop = false;
+	/**
+	 * Booléen permettant d'arrêter la partie en saisissant la commande "stop"
+	 */
+	private static boolean stop = false;
 
-  public static void main(String[] args) {
-    System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ===");
-    Mur m = new Mur();
-    PaquetCarreau p = new PaquetCarreau(true);
-    JeuDeCartes j = new JeuDeCartes();
-    Score s = new Score(0, 0, JeuDeCartes.NBCARTES, 0);
-    Scanner sc = new Scanner(System.in);
-    int noJoueur = 1;
+	/**
+	 * Contient le message d'erreur à traîter
+	 */
+	private static TypeErreur msgErreur = TypeErreur.CORRECT;
 
-    do {
-      System.out.println('\n' + m.toString());
-      Carte carteTirée = j.tirerCarte();
-      System.out.println(System.lineSeparator() + "Joueur " + noJoueur + ", la carte tirée est : " + carteTirée.getTypeCarte());
-      PaquetCarreau pTrié = p.carreauDispo(carteTirée);
-      if(!pTrié.estVide()){
-        System.out.println(pTrié.toString());
-      }
+	public static void main(String[] args) {
+		// System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ==="); //
+		// message de bienvenue
+		Mur m = new Mur();
+		ListeCarreaux p = new ListeCarreaux(true); // p pour ne pas confondre l et 1
+		JeuDeCartes j = new JeuDeCartes();
+		Score s = new Score();
+		Scanner sc = new Scanner(System.in);
 
-      appelCommande(sc, m, carteTirée, p, s, pTrié.estVide());
-      noJoueur++;
-      if (noJoueur > 2)
-        noJoueur = 1;
-    } while (!estTerminee(j, p, stop));
+		do { // faire tant que la partie n'est pas terminée
+			System.out.println(m.toString() + System.lineSeparator()); // afficher le mur
+			Carte carteTirée = j.tirerCarte(); // tirer une carte
+			System.out.println(carteTirée.getTypeCarte()); // afficher son instruction
+			ListeCarreaux pTrié = p.carreauDispo(carteTirée); // accès aux carreaux jouables correspondant
+			if (!pTrié.estVide()) { // affichage de ces derniers
+				System.out.println(pTrié.toString());
+			}
+			do { // faire tant que la saisie n'est pas correcte
+				FctJeu.appelCommande(sc, m, carteTirée, p, s, pTrié.estVide());
+				System.err.print(msgErreur.toString()); // Affichage du message d'erreur si existant
+			} while (msgErreur != TypeErreur.CORRECT);
+		} while (!FctJeu.estTerminee(j, p, stop));
 
-  System.out.println(s.toString(s, p, m));
-  }
+		System.out.println(s.toString(s, p, m)); // Affichage du score en fin de partie
+	}
 
-  /**
-   * Vérifie si la partie est terminée ou non
-   *
-   * @param j    Le jeu de carte
-   * @param p    Le Paquet de carreaux
-   * @param stop La condition stop entrée ar le joueur
-   * @return true si la partie est terminée, false sinon
-   */
-  public static boolean estTerminee(JeuDeCartes j, PaquetCarreau p, boolean stop) {
-    return j.getTasCartes().size() == 0 || p.getPaquetCarreau().size() == 0 || stop == true;
-  }
+	/**
+	 * Accesseur de stop
+	 * 
+	 * @return stop
+	 */
+	public static boolean getStop() {
+		return stop;
+	}
 
-  /**
-   * Lit la commande saisie par un joueur et l'envoie à un switch
-   * 
-   * @param carteTirée La carte tirée
-   * @param s          Le score de la partie
-   */
-  public static void appelCommande(Scanner sc, Mur m, Carte CarteTirée, PaquetCarreau p, Score s, boolean AucunCarreau) {
-    String mot = "";
-    if(AucunCarreau)
-      mot = "next";
-    else
-      mot = sc.next();
-    switch (mot) {
-      case "next":
-        s.écarter();
-        break;
-      case "stop":
-        stop=true;
-        break;
-      default:
-        if (mot.length() > 1) {
-          System.err.println("Saisie incorrecte. Ne correspond ni à une instruction ni à une lettre.");
-          appelCommande(sc, m, CarteTirée, p, s, false);
-        } else {
-          boolean estPosée;
-          int absBG = sc.nextInt();
-          int ordBG = sc.nextInt();
-          Carreau c = p.getCarreau(mot.charAt(0));
-          estPosée = m.placerCarreau(c, absBG, ordBG);
-          if(!estPosée){
-            appelCommande(sc, m, CarteTirée, p, s, false);
-          }
-          p.retirerCarreau(mot.charAt(0));
-        }
-        // placement d'un carreau
-        // on doit s'assurer que la première saisie correspond aux possibilités
-        // on envoie cette lettre à une autre méthode qui recueillera par deux Scanner
-        // les coordonnées absBG et ordBG
-        // cette autre méthode appellera enfin le placement du carreau sur le mur
-    }
-  }
+	/**
+	 * Mutateur de stop
+	 * 
+	 * @param sStop la variable stop
+	 */
+	public static void setStop(boolean sStop) {
+		stop = sStop;
+	}
+
+	/**
+	 * Accesseur du message d'erreur
+	 * 
+	 * @return msgErreur Le message d'erreur
+	 */
+	public static TypeErreur getMsgErreur() {
+		return msgErreur;
+	}
+
+	/**
+	 * Mutateur du message d'erreur
+	 * 
+	 * @param err Le message d'erreur à stocker
+	 */
+	public static void setMsgErreur(TypeErreur err) {
+		msgErreur = err;
+	}
 }
