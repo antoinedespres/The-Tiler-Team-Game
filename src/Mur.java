@@ -149,7 +149,7 @@ public class Mur {
 			return TypeErreur.NON_CONTACT;
 		if (cloneBord(c, absBG, ordBG) == TypeErreur.CLONAGE)
 			return TypeErreur.CLONAGE;
-
+		
 		return TypeErreur.CORRECT;
 	}
 
@@ -308,7 +308,7 @@ public class Mur {
 	public String toString() {
 		StringBuilder sb = new StringBuilder("");
 		for (int i = this.getHauteurMax(); i >= 0; --i) {
-			if (this.getHauteurMax() > BASEAXES && i + 1 < BASEAXES) // pour éviter un décalage à partir de la ligne 10
+			if (this.getHauteurMax() >= BASEAXES - 1 && i + 1 < BASEAXES) // pour éviter un décalage à partir de la ligne 10
 				sb.append(" ");
 			sb.append(i + 1);
 			sb.append(" ");
@@ -322,7 +322,7 @@ public class Mur {
 			}
 			sb.append(System.lineSeparator());
 		}
-		if (this.getHauteurMax() > BASEAXES)
+		if (this.getHauteurMax() >= BASEAXES - 1)
 			sb.append("   1 2 3 4 5");
 		else
 			sb.append("  1 2 3 4 5");
