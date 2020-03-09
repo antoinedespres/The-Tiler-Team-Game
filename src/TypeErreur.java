@@ -2,7 +2,8 @@
  * Énumération des erreurs possibles
  */
 public enum TypeErreur {
-	CORRECT(""), DEPASSEMENT("Le carreau dépasse de la zone à carreler"),
+	CORRECT(""),
+	DEPASSEMENT("Le carreau dépasse de la zone à carreler"),
 	NON_CONTACT("Le carreau ne touche pas un autre carreau"), NON_TROUVE("Élément non trouvé"),
 	REPOS_BASE("Toute la base du carreau ne repose pas sur le bas de la zone ou d'autres carreaux"),
 	CLONAGE("Le carreau clone le côté d'un carreau déjà posé"), SAISIE("La saisie est incorrecte");
