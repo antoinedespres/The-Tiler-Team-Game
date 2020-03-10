@@ -1,4 +1,4 @@
-package methods;
+package components;
 /**
  * Énumération des erreurs possibles
  */

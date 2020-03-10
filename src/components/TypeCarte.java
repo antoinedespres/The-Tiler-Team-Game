@@ -1,4 +1,4 @@
-package methods;
+package components;
 /**
  * Énumération des types de carreau pouvant être indiqués sur une {@link Carte}
  */

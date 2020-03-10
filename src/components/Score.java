@@ -1,4 +1,4 @@
-package methods;
+package components;
 /**
  * Classe Score.
  * 
@@ -51,17 +51,5 @@ public class Score {
 	 */
 	public void écarter() {
 		carteÉcartée++;
-	}
-
-	public int getNivComplets(Score s) {
-		return nivComplets;
-	}
-
-	public int getNonPose(Score s) {
-		return nonPose;
-	}
-
-	public int getcarteÉcartée(Score s) {
-		return carteÉcartée;
 	}
 }

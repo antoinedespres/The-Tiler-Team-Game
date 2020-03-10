@@ -1,4 +1,4 @@
-package methods;
+package components;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -18,6 +18,9 @@ public class JeuDeCartes {
 
 	private ArrayList<Carte> listeCartes;
 
+	/**
+	 * Constructeur de jeu de cartes
+	 */
 	public JeuDeCartes() {
 		listeCartes = new ArrayList<>();
 

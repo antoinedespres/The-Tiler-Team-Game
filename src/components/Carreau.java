@@ -1,4 +1,4 @@
-package methods;
+package components;
 /**
  * Classe Carreau. Un carreau est caractérisé par une largeur, une hauteur et
  * une lettre.

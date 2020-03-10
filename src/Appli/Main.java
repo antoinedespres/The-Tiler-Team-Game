@@ -3,13 +3,13 @@ package Appli;
 
 import java.util.Scanner;
 
-import methods.Carte;
-import methods.FctJeu;
-import methods.JeuDeCartes;
-import methods.ListeCarreaux;
-import methods.Mur;
-import methods.Score;
-import methods.TypeErreur;
+import components.Carte;
+import components.FctJeu;
+import components.JeuDeCartes;
+import components.ListeCarreaux;
+import components.Mur;
+import components.Score;
+import components.TypeErreur;
 
 /**
  * Classe Main.

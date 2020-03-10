@@ -1,4 +1,4 @@
-package methods;
+package components;
 import java.util.Scanner;
 
 import Appli.Main;
