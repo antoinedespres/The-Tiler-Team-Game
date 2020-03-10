@@ -31,7 +31,7 @@ public class Main {
 		do { // faire tant que la partie n'est pas terminée
 			System.out.println(m.toString() + System.lineSeparator()); // afficher le mur
 			Carte carteTirée = j.tirerCarte(); // tirer une carte
-			System.out.println(carteTirée.getTypeCarte()); // afficher son instruction
+			System.out.println(carteTirée.getTypeCarte()+System.lineSeparator()); // afficher son instruction
 			ListeCarreaux pTrié = p.carreauDispo(carteTirée); // accès aux carreaux jouables correspondant
 			if (!pTrié.estVide()) { // affichage de ces derniers
 				System.out.println(pTrié.toString());
