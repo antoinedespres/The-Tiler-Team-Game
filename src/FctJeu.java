@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import Appli.Main;
+
 /**
  * Classe FctJeu pour l'appel de commande et la détection de fin de partie
  * 

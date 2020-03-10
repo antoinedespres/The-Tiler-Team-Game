@@ -1,4 +1,14 @@
+package Appli;
+
 import java.util.Scanner;
+
+import Carte;
+import FctJeu;
+import JeuDeCartes;
+import ListeCarreaux;
+import Mur;
+import Score;
+import TypeErreur;
 
 /**
  * Classe Main.
