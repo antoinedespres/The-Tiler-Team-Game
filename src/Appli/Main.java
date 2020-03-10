@@ -1,14 +1,15 @@
 package Appli;
 
+
 import java.util.Scanner;
 
-import Carte;
-import FctJeu;
-import JeuDeCartes;
-import ListeCarreaux;
-import Mur;
-import Score;
-import TypeErreur;
+import methods.Carte;
+import methods.FctJeu;
+import methods.JeuDeCartes;
+import methods.ListeCarreaux;
+import methods.Mur;
+import methods.Score;
+import methods.TypeErreur;
 
 /**
  * Classe Main.

@@ -1,3 +1,4 @@
+package methods;
 import java.util.Scanner;
 
 import Appli.Main;
