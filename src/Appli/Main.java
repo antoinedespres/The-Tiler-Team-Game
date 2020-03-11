@@ -4,7 +4,6 @@ package Appli;
 import java.util.Scanner;
 
 import components.Carte;
-import components.FctJeu;
 import components.JeuDeCartes;
 import components.ListeCarreaux;
 import components.Mur;
@@ -34,13 +33,14 @@ public class Main {
 		// System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ==="); //
 		// message de bienvenue
 		Mur m = new Mur();
+		m.placerPieceNeutre();
 		ListeCarreaux p = new ListeCarreaux(true); // p pour ne pas confondre l et 1
 		JeuDeCartes j = new JeuDeCartes();
 		Score s = new Score();
 		Scanner sc = new Scanner(System.in);
 
 		do { // faire tant que la partie n'est pas terminée
-			System.out.println(m.toString() + System.lineSeparator()); // afficher le mur
+			System.out.println(m + System.lineSeparator()); // afficher le mur
 			Carte carteTirée = j.tirerCarte(); // tirer une carte
 			System.out.println(carteTirée.getTypeCarte()+System.lineSeparator()); // afficher son instruction
 			ListeCarreaux pTrié = p.carreauDispo(carteTirée); // accès aux carreaux jouables correspondant

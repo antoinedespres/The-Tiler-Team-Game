@@ -1,7 +1,13 @@
-package components;
+package Appli;
 import java.util.Scanner;
 
-import Appli.Main;
+import components.Carreau;
+import components.Carte;
+import components.JeuDeCartes;
+import components.ListeCarreaux;
+import components.Mur;
+import components.Score;
+import components.TypeErreur;
 
 /**
  * Classe FctJeu pour l'appel de commande et la détection de fin de partie

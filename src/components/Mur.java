@@ -50,7 +50,7 @@ public class Mur {
 		for (int i = 0; i < LARGEUR; i++) {
 			this.mur[i] = new ArrayList<Character>();
 		}
-		this.placerPieceNeutre();
+		
 	}
 
 	/**
@@ -66,9 +66,9 @@ public class Mur {
 	 * Place la pièce neutre sur le mur. La position et l'orientation de celle-ci
 	 * sont déterminées aléatoirement.
 	 */
-	private void placerPieceNeutre() {
-		Random piece = new Random();
-		Random position = new Random();
+	public void placerPieceNeutre() {
+		Random piece = new Random(); //orientation aléatoire
+		Random position = new Random(); //position aléatoire
 		if (piece.nextInt(NBPIECENEUTRE) == 0) {
 			this.numPieceNeutre = 0;
 			this.placerCarreau(PIECENEUTRE1, POSPIECENEUTRE1[position.nextInt(2)], 1);
@@ -163,7 +163,7 @@ public class Mur {
 	 * @return Un type d'erreur
 	 */
 	private TypeErreur dépasse(Carreau c, int absBG, int ordBG) {
-		if (absBG + c.getLargeur() <= LARGEUR && absBG >= 0 && ordBG >= 0) { // && absBG > 0 && ordBG > 0 ???
+		if (absBG + c.getLargeur() <= LARGEUR && absBG >= 0 && ordBG >= 0) {
 			return TypeErreur.CORRECT;
 		}
 		return TypeErreur.DEPASSEMENT;
@@ -182,7 +182,7 @@ public class Mur {
 			return TypeErreur.CORRECT;
 		if (ordBG == 0) {
 			boolean touche = false;
-			for (int i = -1; i < COTESCARREAU + c.getLargeur() - 1 && absBG + i < 5 && absBG + i >= 0
+			for (int i = -1; i < COTESCARREAU + c.getLargeur() - 1 && absBG + i < LARGEUR && absBG + i >= 0
 					&& !touche; i += 2 + c.getLargeur() - 1) {
 				if (this.mur[absBG + i].size() >= ordBG && !this.mur[absBG + i].isEmpty()) {
 					touche = true;
@@ -220,6 +220,8 @@ public class Mur {
 	}
 
 	/**
+	 * Vérifie si le carreau clone un autre carreau sur son bord inférieur
+	 * 
 	 * @param c     Le Carreau
 	 * @param absBG Le point d'abscisse en bas à gauche du {@link Carreau}
 	 * @param ordBG Le point d'ordonnée en bas à gauche du {@link Carreau}
@@ -229,7 +231,7 @@ public class Mur {
 		if (ordBG > 0) {
 			if (ListeCarreaux.getLargeurCar(this.mur[absBG].get(ordBG - 1), this) == c.getLargeur()) {
 				char lettrePré = mur[absBG].get(ordBG - 1);
-				char lettreSuiv = ' ';
+				char lettreSuiv = ' '; // comparaison des lettres sous le carreau
 				boolean estEgal = true;
 				for (int i = 1; i < c.getLargeur() && estEgal; i++) {
 					lettreSuiv = mur[absBG + i].get(ordBG - 1);
@@ -245,7 +247,8 @@ public class Mur {
 	}
 
 	/**
-	 *
+	 * Vérifie si le carreau clone un autre carreau sur un côté
+	 * 
 	 * @param c     Le carreau
 	 * @param absBG Le point d'abscisse en bas à gauche du {@link Carreau}
 	 * @param ordBG Le point d'ordonnée en bas à gauche du {@link Carreau}
