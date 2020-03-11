@@ -1,6 +1,5 @@
 package Appli;
 
-
 import java.util.Scanner;
 
 import components.Carte;
@@ -30,8 +29,6 @@ public class Main {
 	private static TypeErreur msgErreur = TypeErreur.CORRECT;
 
 	public static void main(String[] args) {
-		// System.out.println("=== Bienvenue dans le jeu The Tiler Team ! ==="); //
-		// message de bienvenue
 		Mur m = new Mur();
 		m.placerPieceNeutre();
 		ListeCarreaux p = new ListeCarreaux(true); // p pour ne pas confondre l et 1
@@ -42,14 +39,14 @@ public class Main {
 		do { // faire tant que la partie n'est pas terminée
 			System.out.println(m + System.lineSeparator()); // afficher le mur
 			Carte carteTirée = j.tirerCarte(); // tirer une carte
-			System.out.println(carteTirée.getTypeCarte()+System.lineSeparator()); // afficher son instruction
+			System.out.println(carteTirée.getTypeCarte() + System.lineSeparator()); // afficher son instruction
 			ListeCarreaux pTrié = p.carreauDispo(carteTirée); // accès aux carreaux jouables correspondant
 			if (!pTrié.estVide()) { // affichage de ces derniers
-				System.out.println(pTrié.toString());
+				System.out.println(pTrié);
 			}
 			do { // faire tant que la saisie n'est pas correcte
 				FctJeu.appelCommande(sc, m, carteTirée, p, s, pTrié.estVide());
-				System.err.print(msgErreur.toString()); // Affichage du message d'erreur si existant
+				System.err.print(msgErreur); // Affichage du message d'erreur si existant
 			} while (msgErreur != TypeErreur.CORRECT);
 		} while (!FctJeu.estTerminee(j, p, stop));
 

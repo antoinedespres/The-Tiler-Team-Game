@@ -7,9 +7,6 @@ package components;
  * @version 1.0
  */
 public class Score {
-	private int pts;
-	private int nivComplets;
-	private int nonPose;
 	private int carteÉcartée;
 
 	/**
@@ -23,26 +20,6 @@ public class Score {
 	public String toString(Score s, ListeCarreaux p, Mur m) {
 		return (5 * m.getHauteurMin() - p.size() - carteÉcartée + " points (" + m.getHauteurMin()
 				+ " niveaux complets, " + p.size() + " carreaux non posés, " + carteÉcartée + " cartes écartées)");
-	}
-
-	/**
-	 * Incrémenter la valeur saisie
-	 *
-	 * @param s Le nom de la valeur à incrémenter
-	 */
-	public void incrementer(String s) {
-		switch (s) {
-		case "nivComplets":
-			nivComplets++;
-			break;
-		case "nonPose":
-			nonPose++;
-			break;
-		case "carteÉcartée":
-			carteÉcartée++;
-			break;
-		}
-
 	}
 
 	/**
